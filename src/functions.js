@@ -139,9 +139,10 @@ export function gameLoop(act){
                     global.settings.gameSpeed *= fast;
                 }
 
-                for (let key in webWorker.timers) {
-                    webWorker.timers[key] /= global.settings.gameSpeed;
-                }
+                // timers.main stays as is since ressource calculations in
+                // fastloop() are already gamespeed compensated
+                webWorker.timers.mid /= global.settings.gameSpeed;
+                webWorker.timers.long /= global.settings.gameSpeed;
 
                 if (webWorker.w){
                     webWorker.w.postMessage({ loop: 'short', period: webWorker.timers.main });
