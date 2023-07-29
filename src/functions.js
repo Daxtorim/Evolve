@@ -172,8 +172,8 @@ export function calcATime(){
     const dt = Date.now();
     const timeDiff = dt - global.stats.current;
     if (timeDiff >= 120000){
-        const newATime = global.settings.at + (timeDiff * 2/3);
-        const maxATime = 8*60*60*1000; // milliseconds
+        const newATime = global.settings.at + timeDiff;
+        const maxATime = 24*60*60*1000; // milliseconds
         global.settings.at = Math.min(newATime, maxATime);
     }
 }
@@ -412,7 +412,7 @@ export function buildQueue(){
     let queue = $(`<ul class="buildList"></ul>`);
     $('#buildQueue').append(queue);
 
-    queue.append($(`<li v-for="(item, index) in queue"><a v-bind:id="setID(index)" class="has-text-warning queued" v-bind:class="{ 'qany': item.qa }" @click="remove(index)"><span v-bind:class="setData(index,'res')" v-bind="setData(index,'data')">{{ item.label }}{{ item.q | count }}</span> [<span v-bind:class="{ 'has-text-danger': item.cna, 'has-text-success': !item.cna }">{{ item.time | time }}{{ item.t_max | max_t(item.time) }}</span>]</a></li>`));
+    queue.append($(`<li v-for="(item, index) in queue" v-bind:class="{ 'qany': item.qa }"><a v-bind:id="setID(index)" class="has-text-warning queued" @click="remove(index)"><span v-bind:class="setData(index,'res')" v-bind="setData(index,'data')">{{ item.label }}{{ item.q | count }}</span> [<span v-bind:class="{ 'has-text-danger': item.cna, 'has-text-success': !item.cna }">{{ item.time | time }}{{ item.t_max | max_t(item.time) }}</span>]</a></li>`));
 
     try {
         vBind({

@@ -2527,17 +2527,15 @@ a {
         }
 
         li {
-            display: inline-block;
-            height: 1rem;
+            display: list-item;
+            height: 1.25rem;
             padding: 0 .25rem 0 0;
+            margin-left: 1rem;
+            list-style: decimal;
         }
 
-        li:not(:last-child) .queued:after {
-            content: " -> "
-        }
-
-        li:not(:last-child) .qany:after {
-            content: ", "
+        li.qany {
+            list-style: square;
         }
     }
 
