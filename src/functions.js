@@ -127,6 +127,8 @@ export function gameLoop(act){
                 global.settings.gameSpeed = 1;
 
                 calcATime();
+                global.stats['current'] = Date.now();
+
                 if (global.settings.at > 0){
                     global.settings.gameSpeed *= global.settings.atMultiplier;
                 }

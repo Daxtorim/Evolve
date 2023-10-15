@@ -11220,7 +11220,7 @@ function longLoop(){
     }
 
     // Save game state
-    calcATime()
+    calcATime() // to account for PC going into sleep mode and not restarting the gameloop
     global.stats['current'] = Date.now();
     if (!global.race.hasOwnProperty('geck')){
         save.setItem('evolved',LZString.compressToUTF16(JSON.stringify(global)));
